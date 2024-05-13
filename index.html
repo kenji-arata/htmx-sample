@@ -5,6 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>htmx Example</title>
     <script src="https://unpkg.com/htmx.org@1.9.10/dist/htmx.js"></script>
+    <style>
+      /* ボタンのスタイル */
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      /* ボタンのホバー時のスタイル */
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      /* ボタンをクリックしたときのスタイル */
+      button:active {
+        transform: scale(1.05);
+      }
+
+      /* 結果が挿入される要素のスタイル */
+      #result {
+        margin-top: 20px;
+      }
+
+      /* リクエストのSTATUSを表示する要素のスタイル */
+      #status {
+        margin-top: 20px;
+        font-style: italic;
+        color: #888;
+      }
+    </style>
   </head>
   <body>
     <h1>htmx Example</h1>
@@ -14,8 +49,8 @@
       hx-get="https://jsonplaceholder.typicode.com/todos/2"
       hx-trigger="click"
       hx-target="#result"
-      hx-before="beforeRequest()"
-      hx-after="afterRequest()"
+      hx-on::before-reques="beforeRequest()"
+      hx-on::after-request="afterRequest()"
     >
       <button>クリックしてデータを取得</button>
     </div>
@@ -23,7 +58,7 @@
     <!-- 結果が挿入される要素 -->
     <div id="result">ここに結果が表示されます</div>
 
-    <!-- 送信中のメッセージを表示するための要素 -->
+    <!-- リクエストのSTATUSを表示するための要素 -->
     <div id="status">ここにメッセージが表示されます</div>
 
     <script>
